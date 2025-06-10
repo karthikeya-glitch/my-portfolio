@@ -1,0 +1,243 @@
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(207 100% 5%);
+  background-image: linear-gradient(hsl(207 100% 15%), hsl(207 100% 5%));
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  perspective: 800px;
+  overflow: clip;
+
+  * {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Butterfly Animation */
+.butterfly {
+  position: absolute;
+  animation: fly calc(12s + var(--random) * 6s) calc(var(--random) * -100s) infinite linear;
+}
+
+.butterfly::before,
+.butterfly::after {
+  box-shadow: 0 0 15px #0007 inset;
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 53px;
+  background-color: hsl(calc(197 + var(--random) * 20) 100% 50%);
+  clip-path: path('m0 24.949c 2.6262-5.4316 9.7782-15.554 16.428-20.546 4.798-3.6021 12.572-6.3892 12.572 2.4795 0 1.7712-1.0155 14.879-1.6111 17.007-2.0703 7.3984-9.6144 9.2854-16.325 8.1433 11.73 1.9964 14.714 8.6092 8.2697 15.222-12.239 12.559-17.591-3.1511-18.963-7.1766-.2514-.73797-.36904-1.0832-.37077-.78964z');
+  transform-origin: left;
+}
+
+.butterfly::before {
+  animation: flapB calc(0.2s + var(--random) * 0.1s) infinite alternate ease-in-out;
+}
+
+.butterfly::after {
+  animation: flapA calc(0.2s + var(--random) * 0.1s) infinite alternate ease-in-out;
+}
+
+/* Butterfly Keyframes */
+@keyframes fly {
+  0% { transform: rotateX(90deg) rotate(calc(var(--random) * 360deg)) translateX(200px) translateZ(-70vh); }
+  100% { transform: rotateX(90deg) rotate(calc(var(--random) * 360deg - 720deg)) translateX(200px) translateZ(70vh); }
+}
+
+@keyframes flapB {
+  from { rotate: y 15deg; }
+  to { rotate: y -30deg; }
+}
+@keyframes flapA {
+  from { rotate: y 165deg; }
+  to { rotate: y 210deg; }
+}
+
+/* Text + Link Styling */
+.Main-heading {
+  color: white;
+  position: fixed;
+  bottom: 380px;
+  right: 800px;
+  width: 200px;
+}
+
+a {
+  font-size: 20px;
+  left: 400px;
+  bottom: 360px;
+  color: white;
+  text-decoration: none;
+  margin: 20px;
+  position: relative;
+}
+
+/* Underline Hover Effect */
+.underline-hover {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+.underline-hover::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: wheat;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+}
+.underline-hover:hover::after {
+  width: 100%;
+}
+
+/* Fade-in Up Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, 10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Card Entry Animation */
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Main Container */
+.main {
+  position: fixed;
+  top: -250px;
+  left: -340px;
+  background-color: #0007;
+  color: white;
+  width: 1300px;
+  height: 650px;
+  border: 1px solid white;
+}
+.main {
+  animation: fadeSlideIn 1s ease-out forwards;
+}
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Project Card */
+.project {
+  border: 1px solid white;
+  height: 400px;
+  width: 500px;
+  border-radius: 10px;
+  background-color: #0007;
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  animation: cardFadeIn 1.2s ease-out forwards;
+}
+.project h1 {
+  color: wheat;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  position: fixed;
+  left: 120px;
+  top: 20px;
+}
+.project b {
+  position: fixed;
+  top: 90px;
+  left: 10px;
+  font-size: small;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ccc;
+  font-weight: 600;
+}
+
+/* Professional Project Card */
+.professional-project {
+  border: 1px solid white;
+  height: 400px;
+  width: 500px;
+  background-color: #0007;
+  position: fixed;
+  left: 700px;
+  top: 100px;
+  border-radius: 10px;
+  animation: cardFadeIn 1.2s ease-out forwards;
+}
+.professional-project h1 {
+  color: wheat;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  position: fixed;
+  left: 120px;
+  top: 20px;
+}
+#sportssphere {
+  color: rgb(220, 184, 117);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+}
+.professional-project b {
+  position: fixed;
+  top: 130px;
+  left: 50px;
+  font-size: small;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ccc;
+  font-weight: 600;
+}
+.professional-project span {
+  color: rgb(241, 186, 146);
+}
+#image-paddy {
+  color: rgb(220, 184, 117);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  position: fixed;
+  top: 200px;
+  left: 20px;
+}
+.professional-project p {
+  position: fixed;
+  top: 230px;
+  left: 50px;
+  font-size: small;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ddd;
+}
